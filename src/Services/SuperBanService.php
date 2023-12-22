@@ -41,7 +41,7 @@ final class SuperBanService
         int $banPeriod
     ): void
     {
-        $this->identifier = $identifier;
+        $this->identifier = "Superban::".$identifier;
         $this->maxRequests = $maxRequests;
 
         // convert minutes to seconds
