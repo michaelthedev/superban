@@ -54,10 +54,17 @@ final class SuperBanService
      * @return bool
      * @throws InvalidArgumentException
      */
-    public function hasBan(): bool
+    public function limitExceeded(): bool
     {
-        return $this->cache
-                ->get($this->identifier) === 'banned';
+        $value = $this->cache
+            ->get($this->identifier);
+
+        if ($value === 'banned' || $value >= $this->maxRequests) {
+            $this->ban();
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -74,11 +81,6 @@ final class SuperBanService
             $this->cache
                 ->put($this->identifier, 1, $this->banAfter);
         } else {
-            if ($requests >= $this->maxRequests) {
-                $this->ban();
-                return;
-            }
-
             $this->cache
                 ->increment($this->identifier);
         }
@@ -87,6 +89,7 @@ final class SuperBanService
     /**
      * Ban the identifier
      * @return void
+     * @throws InvalidArgumentException
      */
     public function ban(): void
     {
