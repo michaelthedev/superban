@@ -33,8 +33,8 @@ final class SuperbanMiddleware
                 $banPeriod
             );
 
-        if ($this->superban->hasBan()) {
-            abort(429, 'Too many requests');
+        if ($this->superban->limitExceeded()) {
+            return response('Too Many Attempts.', 429);
         }
 
         $this->superban
