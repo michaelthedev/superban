@@ -5,7 +5,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Michaelthedev\\Superban\\": "src/"
+            "Michaelthedev\\Superban\\": "/src",
+            "Michaelthedev\\Tests\\": "/tests"
         }
     },
     "authors": [
@@ -14,15 +15,30 @@
             "email": "michael@logad.net"
         }
     ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Michaelthedev\\Superban\\SuperbanServiceProvider"
+            ]
+        }
+    },
     "require": {
         "php": "^8.1",
         "illuminate/support": "^10.37"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.28",
+        "orchestra/testbench": "^8.18",
+        "pestphp/pest-plugin-laravel": "^2.2"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "sort-packages": true,
         "preferred-install": "dist",
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     }
 }
