@@ -1,33 +1,28 @@
 {
     "name": "michaelthedev/superban",
-    "description": "Superban package for laravel",
+    "description": "Laravel package to ban clients completely for a period of time",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Michaelthedev\\Superban\\": "src/"
+        }
+    },
     "authors": [
         {
             "name": "Michael A.",
             "email": "michael@logad.net"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "Michaelthedev\\Superban\\": "/src",
-            "Michaelthedev\\Tests\\": "/tests"
-        }
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.37"
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Michaelthedev\\Superban\\SuperbanServiceProvider"
-            ]
-        }
-    },
-    "require-dev": {
-        "pestphp/pest": "^2.28",
-        "orchestra/testbench": "^8.18",
-        "pestphp/pest-plugin-laravel": "^2.2"
-    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "config": {
-        "allow-plugins": {
-            "pestphp/pest-plugin": true
-        }
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "optimize-autoloader": true
     }
 }
